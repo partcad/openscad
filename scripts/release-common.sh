@@ -182,6 +182,9 @@ fi
 echo "  NUMCPU: $NUMCPU"
 
 cd $DEPLOYDIR
+# -DPython3_EXECUTABLE=/usr/bin/python3.11 \
+# -DPython3_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython3.11.so \
+# -DPython3_INCLUDE_DIR=/usr/include/python3.11/ \
 CMAKE_CONFIG="${CMAKE_CONFIG}\
  -DCMAKE_BUILD_TYPE=${BUILD_TYPE}\
  -DOPENSCAD_VERSION=${VERSION}\

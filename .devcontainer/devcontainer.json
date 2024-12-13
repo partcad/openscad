@@ -1,0 +1,67 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/cpp
+{
+	"name": "openscad-mxe-64bit",
+	"image": "openscad/mxe-x86_64-gui:latest",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-vscode.cmake-tools",
+				"circleci.circleci"
+			]
+		}
+	},
+	// TODO: Mount /root/openscad_deps from host
+	"features": {
+		"ghcr.io/devcontainers/features/github-cli:1": {
+			"installDirectlyFromGitHubRelease": true,
+			"version": "latest"
+		},
+		"ghcr.io/codeman99/features/circleci-cli:1": {
+			"completions": true,
+			"telemetry": "disable"
+		},
+		// docker: Error response from daemon: invalid mount config for type "bind": bind source path does not exist: /tmp/3479705488_circleci_config.yml.
+		// "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+		// 	"moby": true,
+		// 	"installDockerBuildx": true,
+		// 	"installDockerComposeSwitch": true,
+		// 	"version": "20.10",
+		// 	"dockerDashComposeVersion": "v2"
+		// },
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {
+			"moby": true,
+			"azureDnsAutoDetection": true,
+			"installDockerBuildx": true,
+			"installDockerComposeSwitch": true,
+			"version": "latest",
+			"dockerDashComposeVersion": "latest"
+		},
+		"ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {
+			"allowJqRcVersion": true,
+			"jqVersion": "latest",
+			"yqVersion": "latest",
+			"gojqVersion": "none",
+			"xqVersion": "none",
+			"jaqVersion": "none"
+		}
+	},
+	// "build": {
+	// 	"dockerfile": "Dockerfile"
+	// }
+
+	// Features to add to the dev container. More info: https://containers.dev/features.
+	// "features": {},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	// "postCreateCommand": "gcc -v",
+
+	// Configure tool-specific properties.
+	// "customizations": {},
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

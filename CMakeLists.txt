@@ -416,10 +416,13 @@ target_link_libraries(OpenSCAD PRIVATE ${LIBXML2_LIBRARIES})
 
 # PartCAD embeds Python Interpreter
 if (ENABLE_PARTCAD OR ENABLE_PYTHON)
-  find_package(Python REQUIRED COMPONENTS Interpreter Development)
-  MESSAGE(STATUS "Python: ${Python_VERSION} dirs=${Python_INCLUDE_DIRS} libs=${Python_LIBRARIES} exec=${Python_EXECUTABLE}}")
-  target_include_directories(OpenSCAD PRIVATE ${Python_INCLUDE_DIRS})
-  target_link_libraries(OpenSCAD PRIVATE ${Python_LIBRARIES})
+  set(Python3_EXECUTABLE "/usr/bin/python3.11")
+  set(Python3_LIBRARY "/usr/lib/x86_64-linux-gnu/libpython3.11.so")
+  set(Python3_INCLUDE_DIR "/usr/include/python3.11")
+  find_package(Python3 REQUIRED COMPONENTS Interpreter Development)
+  MESSAGE(STATUS "Python: ${Python_VERSION} dirs=${Python3_INCLUDE_DIR} libs=${Python3_LIBRARY} exec=${Python3_EXECUTABLE}}")
+  target_include_directories(OpenSCAD PRIVATE ${Python3_INCLUDE_DIR} PRIVATE "/usr/include/x86_64-linux-gnu/python3.11" )
+  target_link_libraries(OpenSCAD PRIVATE ${Python3_LIBRARY})
 endif()
 
 if(ENABLE_PYTHON)
