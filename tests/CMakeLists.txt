@@ -216,7 +216,12 @@ set(OPENSCAD_EXE_ARG "--openscad=${OPENSCAD_BINPATH}")
 # If OpenSCAD was built with support for PartCAD then
 # install PartCAD Python module
 if(ENABLE_PARTCAD)
-  execute_process(COMMAND "${Python3_EXECUTABLE}" -m pip install -U partcad
+execute_process(COMMAND "${Python3_EXECUTABLE}" -m venv /tmp/.venv
+                  RESULT_VARIABLE PARTCAD_INSTALL_RESULT
+                  OUTPUT_VARIABLE PARTCAD_INSTALL_OUTPUT
+                  ERROR_VARIABLE PARTCAD_INSTALL_ERROR)
+
+execute_process(COMMAND /tmp/.venv/bin/pip install -U partcad
                   RESULT_VARIABLE PARTCAD_INSTALL_RESULT
                   OUTPUT_VARIABLE PARTCAD_INSTALL_OUTPUT
                   ERROR_VARIABLE PARTCAD_INSTALL_ERROR)

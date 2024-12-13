@@ -19,7 +19,7 @@
 		},
 		"ghcr.io/codeman99/features/circleci-cli:1": {
 			"completions": true,
-			"telemetry": "enable"
+			"telemetry": "disable"
 		},
 		// docker: Error response from daemon: invalid mount config for type "bind": bind source path does not exist: /tmp/3479705488_circleci_config.yml.
 		// "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
@@ -34,9 +34,16 @@
 			"azureDnsAutoDetection": true,
 			"installDockerBuildx": true,
 			"installDockerComposeSwitch": true,
-			"disableIp6tables": true,
-			"version": "27.3.1-debian12u1",
-			"dockerDashComposeVersion": "v2"
+			"version": "latest",
+			"dockerDashComposeVersion": "latest"
+		},
+		"ghcr.io/eitsupi/devcontainer-features/jq-likes:2": {
+			"allowJqRcVersion": true,
+			"jqVersion": "latest",
+			"yqVersion": "latest",
+			"gojqVersion": "none",
+			"xqVersion": "none",
+			"jaqVersion": "none"
 		}
 	},
 	// "build": {

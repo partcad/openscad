@@ -303,3 +303,32 @@ Note: Both `cmake --build` and `ctest` accepts a `-j N` argument for distributin
 	#    ...
 	#    ./scripts/release-common.sh -snapshot -mingw64 -v "$OPENSCAD_VERSION"
 	```
+
+    For incremental builds:
+
+    ```bash
+    # This will purge ./build/* and few other "cached" files
+    git clean -ffdx
+    # Less invasive option
+    rm -rf CMakeCache.txt CMakeFiles/
+    ```
+
+    ```bash
+    # python3 -m ensurepip --upgrade
+    apt-get install --yes python3-venv python3-pip # see doc/testing.txt
+    # apt-get install --yes python3-dev
+    export CIRCLE_BRANCH=$(git branch --show-current)
+    # https://en.wikipedia.org/wiki/Fast_inverse_square_root
+    export CIRCLE_BUILD_NUM=1597463007
+    yq '.jobs.openscad-mxe-64bit.steps[].run | select(. != null) | .command' .circleci/config.yml | bash -euxo pipefail -
+    ```
+
+## Roadmap
+
+- [ ] Add Dev Container configuration to extenal repo.
+- [ ] Deal with "test suite venv" error:
+  ```
+  CMake Warning at tests/CMakeLists.txt:109 (message):
+    Failed to setup the test suite venv for VENV_BIN_PATH-NOTFOUND/python.exe
+    See doc/testing.txt for dependency information.
+  ```
